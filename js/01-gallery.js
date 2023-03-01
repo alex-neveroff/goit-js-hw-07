@@ -29,9 +29,9 @@ gallery.insertAdjacentHTML("beforeend", galleryMarkup(galleryItems));
 // 2. Реалізація делегування на div.gallery і
 // отримання url великого зображення.
 
-gallery.addEventListener("click", isClckedPicture);
+gallery.addEventListener("click", handleClckedPicture);
 
-function isClckedPicture(event) {
+function handleClckedPicture(event) {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
