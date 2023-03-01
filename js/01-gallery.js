@@ -29,31 +29,30 @@ gallery.insertAdjacentHTML("beforeend", galleryMarkup(galleryItems));
 // 2. Реалізація делегування на div.gallery і
 // отримання url великого зображення.
 
-gallery.addEventListener("click", openBigPicture);
+gallery.addEventListener("click", isClckedPicture);
 
-function openBigPicture(event) {
+function isClckedPicture(event) {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
   }
   const bigPicture = event.target.dataset.source;
+  openBigPicture(bigPicture);
+}
 
-  // 4. Відкриття модального вікна по кліку на
-  // елементі галереї.
-
+// 4. Відкриття модального вікна по кліку на
+// елементі галереї.
+function openBigPicture(sourcePicture) {
   const instance = basicLightbox.create(`
-    <img src="${bigPicture}" width="800" height="600">
+    <img src="${sourcePicture}" width="800" height="600">
 `);
   instance.show();
 
   //  5. Закриття з клавіатури
-
-  gallery.addEventListener("keydown", closeBigPicture);
-
-  function closeBigPicture(event) {
+  gallery.addEventListener("keydown", function closeBigPicture(event) {
     if (event.key === "Escape") {
       gallery.removeEventListener("keydown", closeBigPicture);
       instance.close();
     }
-  }
+  });
 }
