@@ -1,9 +1,7 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-// 1. Створення і рендер розмітки на підставі
-// масиву даних galleryItems і наданого шаблону
-// елемента галереї.
+// 1. Створення і рендер розмітки.
 
 const gallery = document.querySelector(".gallery");
 
@@ -26,8 +24,7 @@ function galleryMarkup(galleryItems) {
 
 gallery.insertAdjacentHTML("beforeend", galleryMarkup(galleryItems));
 
-// 2. Реалізація делегування на div.gallery і
-// отримання url великого зображення.
+// 2. Реалізація делегування на div.gallery і отримання url великого зображення.
 
 gallery.addEventListener("click", handleClckedPicture);
 
@@ -36,15 +33,10 @@ function handleClckedPicture(event) {
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  const bigPicture = event.target.dataset.source;
-  openBigPicture(bigPicture);
-}
+  // 4. Відкриття модального вікна по кліку на елементі галереї.
 
-// 4. Відкриття модального вікна по кліку на
-// елементі галереї.
-function openBigPicture(sourcePicture) {
   const instance = basicLightbox.create(`
-    <img src="${sourcePicture}" width="800" height="600">
+    <img src="${event.target.dataset.source}" width="800" height="600">
 `);
   instance.show();
 
